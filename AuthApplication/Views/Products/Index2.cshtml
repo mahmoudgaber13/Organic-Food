@@ -1,0 +1,74 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+
+@{
+    ViewData["Title"] = "Admin Product Index";
+    ViewData["Controller"] = "Products";
+    ViewData["Action"] = "Index2";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <h1>Admin Product Index</h1>
+
+<div class="row-100">
+    <div class="col-md-10 offset-1">
+        <p>
+            <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                    <th class="text-center">
+                        Controls
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Data)
+                {
+                    var PhotoPath = "~/images/" + (item.Image ?? "noimage.jpg");
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td style="width:300px">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.Name)
+                        </td>
+                        <td>
+                            <img class="rounded img-thumbnail" src="@PhotoPath" asp-append-version="true" style="height:70px;width:70px">
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-outline-warning">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-outline-info">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<partial name="_PaginationPartial" view-data="ViewData" model="Model" />

@@ -1,0 +1,79 @@
+﻿@model AuthApplication.Models.Comment
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Comment>Comments  = ViewBag.Comments;
+    var Product = ViewBag.Product;
+    var PhotoPath = "~/images/" + (Product.Image ?? "noimage.jpg");
+}
+    <style>
+        .DetailsBtn {
+            background-color: #B0B435;
+            color: white;
+            transition-property: all;
+            transition-duration: .3s;
+        }
+
+            .DetailsBtn:hover {
+                background-color: #010101;
+                border: 1px solid #B0B435;
+                cursor:pointer;
+                color:white;
+            }
+    </style>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5 col-md-6">
+                <img class="d-block w-100" src="@PhotoPath" asp-append-version="true" alt="Product Image">
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6">
+                <h3>@Product.Name</h3>
+                <h6 style="display: inline-block;"><del>$ @Product.Price</del></h6>
+                <h5 style="display: inline-block; font-weight: bolder; color: #B0B435;">$@(Product.Price*90/100)</h5>
+                <p style="font-size: 1vw;"><span> More than 20 available / <a href="#" style="text-decoration: none; color: #B0B435;">8 sold </a></span><p>
+                    <h5>Short Description:</h5>
+                <p style="font-size: 1.1vw; line-height: 2.5vw;">
+                    @Product.Description
+                </p>
+                <div style="margin-top: 70px;">
+                    <a class="btn DetailsBtn text-white" onclick="Add(@Product.ID)">Add to cart</a>
+                    <div style="float: right;">
+                        <a class="btn DetailsBtn" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a class="btn DetailsBtn" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
+                        <a class="btn DetailsBtn" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a class="btn DetailsBtn" href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+                        <a class="btn DetailsBtn" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  my-5 ">
+
+            <div class="col-md-12 card card-outline-secondary my-4">
+                <div class="card-header">
+                    <h2>Product Reviews</h2>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Comments)
+                    {
+                        var Photo = "";
+                        if (item.User!=null)
+                        {
+                            Photo = @item.User.ImagePath;
+                        }
+                            <div class="media mb-3">
+                                <div class="mr-2 ">
+                                    <img class="rounded-circle border p-1" style="width:64px" src="~/images/@Photo" asp-append-version="true" alt="User Image">
+                                </div>
+                                <div class="media-body">
+                                    <p>@item.Text.</p>
+                                    <small class="text-muted">Posted by <b style="color:#B0B435">@item.User.FirstName @item.User.LastName</b>  on @item.Date</small>
+                                </div>
+                            </div>
+
+                    }
+                    <partial name="_AddComment" />
+                </div>
+            </div>
+        </div>
+    </div>

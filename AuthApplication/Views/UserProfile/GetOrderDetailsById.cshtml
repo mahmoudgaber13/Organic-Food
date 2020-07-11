@@ -1,0 +1,44 @@
+﻿@model OrderDetails
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Order Details</h1>
+
+<link href="~/css/UserProfile.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-hover table-responsive">
+                <table class="table" style="margin-top: 50px;">
+                    <thead style="background-color: #B0B435; color: white; font-weight: bolder;">
+                        <tr>
+                            <th>OrderDetails ID.</th>
+                            <th>Order ID.</th>
+                            <th>Order Quantity.</th>
+                            <th>Order Price.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding-top: 50px;">
+                                @Model.ID
+                            </td>
+                            <td style="padding-top: 50px;">
+                                @Model.OrderId
+                            </td>
+                            <td style="padding-top: 50px;">
+                                @Model.Quantity
+                            </td>
+                            <td style="padding-top: 50px;">
+                                @Model.Price
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+﻿@using AuthApplication.Models;
+@using AuthApplication.Extensions;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .submitOrder {
+        background-color: #B0B435;
+        color: white;
+        transition-property: all;
+        transition-duration: .5s;
+        padding: 10px 30px;
+    }
+
+        .submitOrder:hover {
+            background-color: #010101;
+            border: 3px solid green;
+            color: white;
+        }
+</style>
+<!-- cart -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-hover table-responsive">
+                <table class="table" style="margin-top: 50px;">
+                    <thead style="background-color: #B0B435; color: white; font-weight: bolder;">
+                        <tr>
+                            <th>Images</th>
+                            <th>Product Name</th>
+                            <th style="width: 75px;">Price</th>
+                            <th style="width: 200px;">Quantity</th>
+                            <th style="width: 75px;">Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("Cart") == null)
+                        {
+                            <tr>
+                                <td>
+                                    <h3>Shopping Cart (0)</h3>
+                                    <p style="background-color:burlywood;color:black">
+                                        Shopping cart is currently empty<br />
+                                        Add items to your cart and view them here before you checkout.
+                                    </p>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var cart in HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("Cart"))
+                            {
+                                var PhotoPath = "~/images/" + (cart.Product.Image ?? "noimage.jpg");
+
+                                <tr>
+                                    <td>
+                                        <img class="pic-1 rounded" src="@PhotoPath" asp-append-version="true" style="padding-top: 0px;width: 100px;">
+                                    </td>
+                                    <td style="padding-top: 50px;">
+                                        @cart.Product.Name
+                                    </td>
+                                    <td style="padding-top: 50px;">
+                                        <p>$ @cart.Product.Price</p>
+                                    </td>
+                                    <td style="padding-top: 50px;">
+                                        <p>@cart.Quantity KG</p>
+                                    </td>
+                                    <td style="padding-top: 50px;">
+                                        <p>$ @(string.Format("{0:N0}",cart.Product.Price * cart.Quantity))</p>
+                                    </td>
+                                    <td style="padding-top: 50px;">
+                                        <a asp-controller="ShoppingCart"
+                                           asp-action="Delete" asp-route-id="@cart.Product.ID"
+                                           onclick="return confirm ('Are you sure you want to delete this ?')">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @if (HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("Cart") != null)
+     {
+         List<Cart> temp = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("Cart");
+         var total =int.Parse( string.Format("{0:N0}", temp.Sum(x => x.Quantity * x.Product.Price)));
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-lg-3 col-sm-12"></div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="order-box" style="border: 2px solid #010101; border-radius: 10px; padding: 15px;">
+                    <h2 style="text-align: center; color: #B0B435;">Order summary</h2>
+                    <div class="d-flex">
+                        <h4>Sub Total</h4>
+                        <div class="ml-auto font-weight-bold"> $ @total </div>
+                    </div>
+                    <div class="d-flex" style="margin-top: 10px;">
+                        <h4>Discount</h4>
+                        <div class="ml-auto font-weight-bold">10 %</div>
+                    </div>
+                    <div class="d-flex" style="margin-top: 10px;">
+                        <h4>Tax</h4>
+                        <div class="ml-auto font-weight-bold"> $ 2 </div>
+                    </div>
+                    <div class="d-flex" style="margin-top: 10px;">
+                        <h4>Shipping Cost</h4>
+                        <div class="ml-auto font-weight-bold"> Free </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex" style="margin-top: 10px;">
+                        <h3>Grand Total</h3>
+                        <div class="ml-auto h5 font-weight-bold" style="margin-top: 10px;">
+                            @if (total > 0)
+                            {
+                                <Span>$</Span>@(total * 90 / 100 + 2);
+                                <del>$ @total</del>
+                            }
+                            else
+                            {
+                                @total;
+                            }
+                        </div> 
+                    </div>
+                    <hr>
+                    <div class="col-12" style="text-align: center;"><a asp-controller="ShoppingCart" asp-action="MakeOrder" class="btn submitOrder">Checkout</a> </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12"></div>
+        </div>  
+     }
+</div>

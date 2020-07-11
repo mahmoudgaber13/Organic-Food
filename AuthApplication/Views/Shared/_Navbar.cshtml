@@ -1,0 +1,84 @@
+﻿<link href="~/css/Navbar.css" rel="stylesheet" />
+<div class="container-fluid sticky-top">
+    <div class="row" style="background-color: #010101; ">
+        <div id="contact" class="col-lg-6 col-md-12 col-sm-12" style="padding: 13px; ">
+            <span id="PhoneNum" style="font-family: 'Dosis', sans-serif; margin-left: 20px; color: white; font-size: .7rem;">
+                Call US :- <a href="#" class="a"> +02 010 6078 5268</a>
+            </span>
+            <span style="font-family: 'Dosis', sans-serif;font-size: .8rem;  margin-left: 30px; color: white; font-weight: bold;">
+
+                <a asp-controller="UserProfile" asp-action="Index" class="a"><i class="fa fa-user s_color"></i> My Account </a>&nbsp; | &nbsp;
+                <a href="#" class="a"><i class="fas fa-location-arrow"></i> Our location </a>&nbsp; | &nbsp;
+                <a href="#" class="a"><i class="fas fa-headset"></i> Contact Us </a>
+            </span>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12" id="btnregister">
+            <div style="float: right; margin-bottom: 7px;">
+                <partial name="_LoginPartial.cshtml" />
+            </div>
+            <div style="float: left; color: white; padding: 13px; height: 30px; font-size: .9rem; ">
+                <div>
+                    <ul>
+                        <li class="liH" id="liH1" style="display: inline;">
+                            <i class="fab fa-opencart iH"></i> 20% sale for new customer
+                        </li>
+                        <li class="liH" id="liH2">
+                            <i class="fab fa-opencart iH"></i> 50% - 80% off on Vegetables
+                        </li>
+                        <li class="liH" id="liH3">
+                            <i class="fab fa-opencart iH"></i> Off 10%! Shop Vegetables
+                        </li>
+                        <li class="liH" id="liH4">
+                            <i class="fab fa-opencart iH"></i> Off 50%! Shop Now
+                        </li>
+                        <li class="liH" id="liH5">
+                            <i class="fab fa-opencart iH"></i> Off 10%! Shop Vegetables
+                        </li>
+                        <li class="liH" id="liH6">
+                            <i class="fab fa-opencart iH"></i> 50% - 80% off on Vegetables
+                        </li>
+                        <li class="liH" id="liH7">
+                            <i class="fab fa-opencart iH"></i> Off 10%! Shop Vegetables
+                        </li>
+                        <li class="liH" id="liH8">
+                            <i class="fab fa-opencart iH"></i> Off 50%! Shop Now
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-light " style="position: sticky;top: 0; z-index: 2;">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+            <button class="navbar-toggler" style="border-color: black;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="~/images/logo.png" class="logo" alt="" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <li class="nav-item"><a class="nav-link" style="padding-left: 1.5rem;" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" style="padding-left: 1.5rem;" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" style="padding-left: 1.5rem;" asp-controller="Products" asp-action="Index">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" style="padding-left: 1.5rem;" asp-controller="Contacts" asp-action="Create">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="attr-nav">
+                <span class="search cartColor" style="margin:0 5px;" ><span class="cartColor"><i class="fa fa-search"></i></span></span>
+                <a class=" cartColor" href="/ShoppingCart/">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span style="font-size: .9rem;" id="cart">My Cart</span><span class="badge"><sup style="font-size: .9rem;" id="productCount">0</sup></span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>
+<script src="~/js/navbar.js"></script>
+
+@*<div class="container-fluid" id="SearchDiv" style="background-color: #010101">
+    <div class="container row text-wight" style="margin: auto; padding: 10px;">
+        <div class="col-9 col-lg-11 col-xs-10"><input type="text" class="form-control" style=" border: none; border-radius: 10px; display: inline-block;" placeholder="Search"></div>
+        <div class="col-3 col-lg-1 col-xs-2" style="text-align: center;"><input type="button" class="btn submitEmail" value="Search" style="display: inline-block;"></div>
+    </div>
+</div>*@

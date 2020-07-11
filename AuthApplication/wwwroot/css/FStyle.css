@@ -1,0 +1,59 @@
+footer {
+    background-color: #010101;
+    color: white;
+    padding-top: 30px;
+    font-family: 'Dosis', sans-serif;
+    bottom: 0;
+}
+
+.socialIcon {
+    list-style-type: none;
+    margin-left: 5px;
+    padding: 5px 0;
+    width: 10%;
+    text-align: center;
+    border: 2px solid #B0B435;
+    display: inline-block;
+}
+
+.i {
+    color: white;
+}
+
+.li {
+    list-style-type: none;
+    position: relative;
+    left: 0;
+    font-size: .8rem;
+    margin-top: 10px;
+}
+
+.a {
+    text-decoration: none;
+    color: white;
+}
+
+    .a:hover {
+        text-decoration: none;
+        color: #B0B435;
+    }
+
+.submitEmailfooter {
+    background-color: #B0B435;
+    color: white;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+    .submitEmailfooter:hover {
+        background-color: #010101;
+        border: 1px solid #B0B435;
+        color: white;
+    }
+
+    /*Carousel*/
+@media screen and (max-width:900px) {
+    .directionfo {
+        display: none;
+    }
+}

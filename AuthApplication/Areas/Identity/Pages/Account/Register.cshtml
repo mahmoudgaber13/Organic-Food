@@ -1,0 +1,247 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+
+}
+
+
+<style>
+    html, body {
+        background: rgb(128, 128, 128);
+        /*  background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(149,199,20,1) 0%, rgba(0,212,255,1) 96%);*/
+    }
+
+    .myForm {
+        background-color: rgb(0, 0, 0) !important;
+        padding: 15px !important;
+        border-radius: 15px !important;
+        color: white;
+    }
+
+    input {
+        border-radius: 0 15px 15px 0 !important;
+    }
+
+        input:focus {
+            outline: none;
+            box-shadow: none !important;
+            border: 1px solid #ccc !important;
+        }
+
+    .br-15 {
+        border-radius: 15px 0 0 15px !important;
+    }
+
+    #add_more {
+        color: white !important;
+        background-color: #fa8231 !important;
+        border-radius: 15px !important;
+        border: 0 !important;
+    }
+
+    #remove_more {
+        color: white !important;
+        background-color: #fc5c65 !important;
+        border-radius: 15px !important;
+        border: 0 !important;
+        display: none;
+    }
+
+    .submit_btn {
+        border-radius: 15px !important;
+        background-color: #95c714 !important;
+        border: 0 !important;
+    }
+</style>
+<div class="container mb-4">
+    <div class="d-flex justify-content-center">
+        <div class="card mt-5 col-md-4 animated bounceInDown myForm">
+            <div class="card-header">
+                <h4>Sign Up</h4>
+            </div>
+            <div class="card-body">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post" style="margin-bottom:20px" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div id="dynamic_container">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-id-card-alt"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.FirstName" placeholder="First Name" class="form-control" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-id-card-alt"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.LastName" placeholder="Last Name" class="form-control" />
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-location-arrow"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.City" placeholder="City" class="form-control" />
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-location-arrow"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.Country" placeholder="Country" class="form-control" />
+                            <span asp-validation-for="Input.Country" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-location-arrow"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.Phone" placeholder="Phone Number" class="form-control" />
+                            <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="text" asp-for="Input.Email" placeholder="Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input asp-for="Input.Password" placeholder="Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text br-15"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="input-group mt-3">
+                            
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="file">
+                                <label class="custom-file-label" for="customFile">Choose Image</label>
+                                <span asp-validation-for="Input.ImagePath" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="reset" class="btn btn-danger btn-sm" id="add_more"><i class="fas fa-plus-circle"></i> Reset</button>
+                        <button type="submit" class="btn btn-success btn-sm float-right submit_btn"><i class="fas fa-arrow-alt-circle-right"></i> Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Input.FirstName"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Input.LastName"></label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Input.Email"></label>
+            <input asp-for="Input.Email" class="form-control" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Register</button>
+    </form>*@
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        var i = 0;
+        $(document).ready(function () {
+            $('#add_more').on('click', function () {
+                var colorR = Math.floor((Math.random() * 256));
+                var colorG = Math.floor((Math.random() * 256));
+                var colorB = Math.floor((Math.random() * 256));
+                i++;
+                var html = '<div id="append_no_' + i + '" class="animated bounceInLeft">' +
+                    '<div class="input-group mt-3">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text br-15" style="color:rgb(' + colorR + ',' + colorG + ',' + colorB + '">' +
+                    '<i class="fas fa-user-graduate"></i></span>' +
+                    '</div>' +
+                    '<input type="text" placeholder="Student Name"  class="form-control"/>' +
+                    '</div>' +
+                    '<div class="input-group mt-3">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text br-15" style="color:rgb(' + colorR + ',' + colorG + ',' + colorB + '">' +
+                    '<i class="fas fa-phone-square"></i></span>' +
+                    '</div>' +
+                    '<input type="text" placeholder="Student Phone" class="form-control"/>' +
+                    '</div>' +
+                    '<div class="input-group mt-3">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text br-15" style="color:rgb(' + colorR + ',' + colorG + ',' + colorB + '">' +
+                    '<i class="fas fa-at"></i></span>' +
+                    '</div>' +
+                    '<input type="email" placeholder="Student Email" class="form-control"/>' +
+                    '</div></div>';
+
+                $('#dynamic_container').append(html);
+                $('#remove_more').fadeIn(function () {
+                    $(this).show();
+                });
+            });
+
+            $('#remove_more').on('click', function () {
+
+                $('#append_no_' + i).removeClass('bounceInLeft').addClass('bounceOutRight')
+                    .fadeOut(function () {
+                        $(this).remove();
+                    });
+                i--;
+                if (i == 0) {
+                    $('#remove_more').fadeOut(function () {
+                        $(this).hide()
+                    });;
+                }
+
+            });
+        });
+
+        /*input type file of image*/
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

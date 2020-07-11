@@ -1,0 +1,9 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+
+@{
+    ViewData["Title"] = "Products";
+    ViewData["Controller"] = "Products";
+    ViewData["Action"] = "Index";
+}
+<link href="~/css/ProductPartial.css" rel="stylesheet" />
+<partial name="_DisplayProductPartial"  />

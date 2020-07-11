@@ -1,0 +1,32 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+@using Microsoft.AspNetCore.Identity;
+@using AuthApplication.Areas.Identity.Data;
+@inject SignInManager<ApplicationUser> signinmanager;
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "Index";
+    Layout = ViewBag.layout;
+}
+<link href="~/css/ProductPartial.css" rel="stylesheet" />
+
+<partial name="_Carousel" />
+<br />
+<div id="myasd">
+    <partial name="_DisplayProductPartial" />
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    function Add(id) {
+        $.get("ShoppingCart/OrderNow/" + id, function () {
+            alert("Data Loaded: ");
+            var c = parseInt(document.getElementById("productCount").innerText) + 1;
+            document.getElementById("productCount").innerText = c;
+            // document.getElementById("cartid").disabled = "disabled";;});
+        });
+    }
+
+
+</script>

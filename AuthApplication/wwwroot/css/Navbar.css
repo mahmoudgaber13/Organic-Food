@@ -1,0 +1,73 @@
+﻿@media screen and (max-width:1056px) {
+    #PhoneNum {
+        display: none;
+    }
+
+    #contact {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:990px) {
+    #btnregister {
+        text-align: center;
+    }
+
+    #cart {
+        display: none;
+    }
+}
+
+.a {
+    text-decoration: none;
+    color: white;
+}
+
+.cartColor {
+    text-decoration: none;
+    color: black;
+}
+.cartColor:hover {
+    text-decoration: none;
+   color: #B0B435;
+}
+.aH2 {
+    text-decoration: none;
+    color: #010101
+}
+
+.a:hover {
+    text-decoration: none;
+    color: #B0B435;
+}
+
+.nav-link:hover {
+    color: #B0B435;
+}
+
+.nav-item {
+    font-weight: bolder;
+}
+
+.iH {
+    color: #B0B435;
+}
+
+.liH {
+    list-style-type: none;
+    display: none;
+}
+
+.submitEmailHeader {
+    background-color: #B0B435;
+    color: white;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+    .submitEmailHeader:hover {
+        background-color: #010101;
+        border: 1px solid #B0B435;
+        color: white;
+    }
+

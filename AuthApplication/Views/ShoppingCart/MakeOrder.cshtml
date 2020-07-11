@@ -1,0 +1,14 @@
+﻿@using AuthApplication.Models;
+@using AuthApplication.Extensions;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+@{
+    ViewData["Title"] = "MakeOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    Your Order has been Placed Successfully.
+    please click <a asp-controller="Home" asp-action="Index">Here</a> to go to home page !!!
+</h3>
+

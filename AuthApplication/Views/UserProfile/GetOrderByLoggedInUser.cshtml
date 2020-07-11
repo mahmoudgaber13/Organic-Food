@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetOrderByLoggedInUser</h1>
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>Order ID.</th>
+            <th>User ID.</th>
+            <th>Order Date.</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.ID</td>
+                <td>@order.UserID</td>
+                <td>@order.Date</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

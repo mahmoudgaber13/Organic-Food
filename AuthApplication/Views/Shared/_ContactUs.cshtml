@@ -1,0 +1,84 @@
+﻿@model AuthApplication.Models.Contact
+<style>
+    .input {
+        margin-bottom: 30px;
+    }
+    .submitEmail 
+    {
+        background-color: #ccce7c;
+        color: white;
+        transition-property: all;
+        transition-duration: .5s;
+        margin-top: 30px;
+        padding: 10px 20px;
+    }
+    .submitEmail:hover 
+    {
+        background-color: #595959;
+        border: 1px solid #B0B435;
+        color: white;
+    }
+    span p .a 
+    {
+        text-decoration: none;
+        color: black;
+    }
+    span p .a:hover 
+    {
+        text-decoration: none;
+        color: #B0B435;
+    }
+
+    #background 
+    {
+        background-image: Url("../images/contact-bg.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 20px;
+        margin: 0 10px;
+    }
+</style>
+<div class="container bg-white" style="padding:50px 0;">
+    <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12">
+            <h4>GET IN TOUCH</h4>
+            <p style="font-size: .8rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
+            <form class="form" asp-action="Create" asp-controller="Contacts">
+                <div class="form-group">
+                    <input type="email" asp-for="Email" class="form-control " placeholder="Your Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <textarea asp-for="Text" class="form-control" rows="5" placeholder="Your Message"></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn submitEmail" type="submit">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+
+            <div id="background">
+                <h4>Contact Info</h4>
+                <p style="line-height:1.5rem; font-size: .9rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum.<br> Nunc tristique purus turpis. Maecenas vulputate.</p>
+                <span style="font-size: .8rem;">
+                    <i class="fas fa-map-marker-alt i" style="color:#B0B435"></i>
+                    <span style="margin-left: 10px;">Address: Egypt</span>
+                    <br>
+                    <span style="margin-left: 25px;"> Street Oraby,</span>
+                    <br>
+                    <span style="margin-left: 25px;"> KS 67213 </span>
+                </span>
+                <br>
+                <span style="font-size: .8rem;">
+                    <i class="fas fa-phone-square i" style="color:#B0B435"></i><p style=" display: inline; margin-left: 10px;">Phone: <a class="a"  href="tel:+1-888705770">+201060785268</a></p>
+                </span>
+                <br>
+                <span style="font-size: .8rem;">
+                    <i class="fas fa-envelope i" style="color:#B0B435"></i><p style=" display: inline; margin-left: 10px;">Email: <a class="a"  href="mailto:Night-Walkers@gmail.com">Night-Walkers@gmail.com</a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
